@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Movie from "../components/Movie";
+import styles from "./Home.module.css";
 
 const url =
   "https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year";
@@ -19,12 +20,13 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>The Movies! {loading ? "" : `(${movies.length})`}</h1>
+    <div className={styles.container}>
       {loading ? (
-        <strong>Loading...</strong>
+        <div className={styles.loader}>
+          <span>Loading...</span>
+        </div>
       ) : (
-        <div>
+        <div className={styles.movies}>
           {movies.map(movie => (
             <Movie
               key={movie.id}
